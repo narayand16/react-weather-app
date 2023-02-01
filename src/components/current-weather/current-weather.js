@@ -1,23 +1,32 @@
 import "./current-weather.css";
+import { getWeatherDetails } from "../../util/util";
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ data }) => {
+  const weatherData = getWeatherDetails(data).slice(0, 4);
+
   return (
     <div className="weather">
       <div className="top">
         <div>
-          <p className="city">Mumbai</p>
-          <p className="weather-description">sunny</p>
+          <p className="city">{data.city}</p>
+          <p className="weather-description">{data.weather[0].description}</p>
         </div>
-        <img alt="weather" className="weather-icon" src="icons/some.png"></img>
+        <img
+          alt="weather"
+          className="weather-icon"
+          src={`icons/${data.weather[0].icon}.png`}
+        ></img>
       </div>
       <div className="bottom">
-        <p className="temperature"> 20C</p>
+        <p className="temperature"> {Math.round(data.main.temp)}°C</p>
         <div className="details">
-          <div className="row">
-          <p className="label">Feels like</p>
-          <p className="value">22C</p>
-          </div>
-          
+          {weatherData &&
+            weatherData.map((weather, index) => (
+              <div className="row" key={index}>
+                <span className="label">{weather.label}</span>
+                <span className="value">{weather.value}</span>
+              </div>
+            ))}
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
 .weather {
     border-radius: 0.5rem;
-    background-color: dimgrey;
+    background-color: #696969;
     color: #fff;
     width: 20rem;
     margin: 1.5rem auto;
     padding: 1rem;
+    box-shadow: 1rem 1rem 1rem 0.25rem rgb(0 0 0 / 20%);
 }
 
 .top,
@@ -34,12 +35,13 @@
 .temperature {
     font-weight: 700;
     font-size: 70px;
+    letter-spacing: -0.25rem;
     margin: 0;
 }
 
 .details {
     width: 100%;
-    padding-left: 1.5rem;
+    padding-left: 2.5rem;
 }
 
 .row {
