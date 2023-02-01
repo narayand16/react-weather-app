@@ -9,20 +9,22 @@ const Search = ({ onSearchChange }) => {
     setSearchText(searchQuery);
     onSearchChange(searchQuery);
   };
-  const loadOptions = (inputVal) => {
+
+  const loadOptions = (inputVal = "") => {
     return fetch(
       `${GEO_API_BASE_URL}/cities?namePrefix=${inputVal}`,
       geoApiOptions
     )
       .then((response) => response.json())
       .then((results) => ({
-        options: results.data.map((city) => ({
+        options: results?.data?.map((city) => ({
           label: `${city.name}, ${city.countryCode}`,
-          value: `${city.latitude}, ${city.longitude}`,
+          value: `${city.latitude} ${city.longitude}`,
         })),
       }))
       .catch((error) => console.log(error));
   };
+
   return (
     <AsyncPaginate
       placeholder="Search for city"
